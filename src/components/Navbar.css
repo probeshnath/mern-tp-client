@@ -1,0 +1,15 @@
+.container{
+    max-width: 1240px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+ul{
+    display: flex;
+    gap: 20px;
+}
+
+ul > li {
+    list-style: none;
+}
