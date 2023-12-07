@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
+import { AuthContext } from '../store/auth'
 
 const Register = () => {
     const navigate = useNavigate()
+    const {storeTokenInLs} = useContext(AuthContext)
     const [user, setUser] = useState({
         username: "",
         email: "",
@@ -37,6 +39,12 @@ const Register = () => {
         })
         console.log(response)
         if(response.status === 201){
+            const res_data = await response.json()
+            // console.log("res data from register", res_data)
+
+            // store token in local stroge
+            storeTokenInLs(res_data.token)
+            // localStorage.setItem('token', res_data.token)
             navigate("/")
         }
        } catch (error) {
